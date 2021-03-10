@@ -73,7 +73,12 @@ public class RacePoly extends JFrame
         *  if input is anything other than 'T', 't',
         *          'H' or 'h', continue
         */
-
+        if ((input == 'h') || (input == 'H')) {
+            racerList.add(new Hare("Заяц", START_LINE, yPos));
+         } else if ((input == 't') || (input == 'T')) {
+            racerList.add(new Tortoise("Черепаха", START_LINE, yPos));
+        }
+        yPos += RACER_SPACE;
        repaint( );
        input = getRacer( ); // get input from user
 
@@ -97,11 +102,16 @@ public class RacePoly extends JFrame
 
       if ( raceIsOn )
       {
-    	  /**********************/
+    	  for( Racer racer : racerList ) {
+    	      racer.move();
+    	      racer.draw(g);
+          }
       }
-      
-      else 
+      else
        {
+           for( Racer racer : racerList ) {
+               racer.draw(g);
+           }
        }
      }
    }
